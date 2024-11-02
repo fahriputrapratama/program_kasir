@@ -2,6 +2,9 @@ package tampilanloginn;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static tampilanloginn.menu.lb_level;
+import static tampilanloginn.menu.lb_nama;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -213,6 +216,11 @@ public class profil_kasir extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         jMenuItem1.setText("Profile");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -233,13 +241,25 @@ public class profil_kasir extends javax.swing.JFrame {
         // TODO add your handling code here:
         login log = new login();  // Buka form/menu baru
         log.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
         // TODO add your handling code here:
+        menu m = new menu();
+//        this.setVisible(false);
+        m.setVisible(true);
         this.dispose();
+//        this.toBack();
+//        setVisible(false);
+//        new menu().toFront();
+//        new menu().setState(java.awt.Frame.NORMAL);
+
     }//GEN-LAST:event_kembaliActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,4 +323,8 @@ public class profil_kasir extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JButton kembali;
     // End of variables declaration//GEN-END:variables
+
+    private menu menu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

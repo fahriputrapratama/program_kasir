@@ -14,16 +14,24 @@ import java.sql.SQLException;
  */
 public class Config {
      public static Connection configDB() throws SQLException {
-        try {
+        Connection connection = null;
+         try {
             String url = "jdbc:mysql://localhost:3306/program_kasir";
             String user = "root";
             String password = "";
-
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            return DriverManager.getConnection(url, user, password);
+            
+            connection = DriverManager.getConnection(url,user,password);
+//
+//            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+//            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println("Connection failed: " + e.getMessage());
             throw e;
         }
+         return connection;
+    }
+
+    static Connection Go() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

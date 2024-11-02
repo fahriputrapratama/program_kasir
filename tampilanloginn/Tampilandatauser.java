@@ -1,8 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package tampilanloginn;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.HashSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -10,11 +15,20 @@ package tampilanloginn;
  */
 public class Tampilandatauser extends javax.swing.JFrame {
 
+    static void viewData() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    private Object tfieldcari;
+
+
     /**
      * Creates new form Tampilandatauser
      */
     public Tampilandatauser() {
         initComponents();
+        viewData("");
+//        model = new DefaultTableModel();
+//        tabledata.setModel(model);
     }
 
     /**
@@ -27,114 +41,214 @@ public class Tampilandatauser extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_tambah = new javax.swing.JButton();
+        btn_edit = new javax.swing.JButton();
+        btn_hapus = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        tekscari = new javax.swing.JTextField();
+        btn_refresh = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabledata = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 255, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-24.png"))); // NOI18N
-        jButton1.setText("Tambah");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-24.png"))); // NOI18N
+        btn_tambah.setText("Tambah");
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
+        btn_tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_tambahActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-24.png"))); // NOI18N
-        jButton2.setText("Edit Data");
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-24.png"))); // NOI18N
-        jButton3.setText("Hapus Data");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-24.png"))); // NOI18N
+        btn_edit.setText("Edit Data");
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_editActionPerformed(evt);
+            }
+        });
+
+        btn_hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-24.png"))); // NOI18N
+        btn_hapus.setText("Hapus Data");
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Cari");
 
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-24.png"))); // NOI18N
+
+        tekscari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tekscariKeyReleased(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-24.png"))); // NOI18N
+        btn_refresh.setText("Refresh");
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btn_tambah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_hapus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_refresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tekscari, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(42, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btn_tambah)
+                                .addComponent(btn_edit)
+                                .addComponent(btn_hapus)
+                                .addComponent(btn_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(tekscari))
+                                .addGap(3, 3, 3))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id User", "Id Akun", "Nama Lengkap", "Alamat", "No Telepon", "Email", "Jenis Kelamin", "Level"
+                "Id Akun", "No", "Nama Lengkap", "Username", "Password", "Level"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabledata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabledataMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabledata);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Tambah T = new Tambah(this, true);
+        T.setVisible(true);
+    }//GEN-LAST:event_btn_tambahActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+//        HapusData hd = new HapusData(this,true);
+//        hd.setVisible(true);
+        int n = tabledata.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(tabledata.getValueAt(n, 0).toString());
+//            JOptionPane.showMessageDialog(this, id); 
+            
+            int pilihan = JOptionPane.showConfirmDialog(this, 
+                    "Apakah Anda yakin untuk menghapus data user ini?",
+                    "Hapus Data",JOptionPane.YES_NO_OPTION);
+            if(pilihan == 0){
+                //yes
+                String Q = "DELETE FROM akun WHERE id_akun="+id+" ";
+                try {
+                    Connection K = Config.configDB();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewData(""); 
+                } catch (Exception e) {
+                }
+            }else {
+                //no
+            }
+        }
+    }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // TODO add your handling code here:
+        Edit_Data E = new Edit_Data(this, true);
+        E.setVisible(true);
+    }//GEN-LAST:event_btn_editActionPerformed
+    
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        // TODO add your handling code here:
+        
+  
+    }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void tekscariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tekscariKeyReleased
+        // TODO add your handling code here:
+        String key = tekscari.getText();
+        String w = "WHERE "
+                + "fullname LIKE '%"+key+"%' "
+                + "OR username LIKE '%"+key+"%' "
+                + "OR password LIKE '%"+key+"%' "
+                + "OR level LIKE '%"+key+"%'";
+        viewData(w);
+    }//GEN-LAST:event_tekscariKeyReleased
+
+    private void tabledataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabledataMouseClicked
+        // TODO add your handling code here:
+//        int baris = tabledata.rowAtPoint(evt.getPoint());
+//        String no = tabledata.getValueAt(baris, 0).toString();
+//        nofield.setText(no);
+//
+//        String nama_siswa = table.getValueAt(baris, 1).toString();
+//        txtnama.setText(nama_siswa);
+//
+//        String gender = table.getValueAt(baris, 2).toString();
+//        txtgender.setText(gender);
+//
+//        String kelas = table.getValueAt(baris, 3).toString();
+//        txtkelas.setText(kelas);
+
+    }//GEN-LAST:event_tabledataMouseClicked
+
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        // TODO add your handling code here:
+        tekscari.setText(""); 
+        viewData("");
+    }//GEN-LAST:event_btn_refreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,26 +259,7 @@ public class Tampilandatauser extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tampilandatauser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tampilandatauser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tampilandatauser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tampilandatauser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Tampilandatauser().setVisible(true);
             }
@@ -172,14 +267,71 @@ public class Tampilandatauser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_edit;
+    private javax.swing.JButton btn_hapus;
+    private javax.swing.JButton btn_refresh;
+    private javax.swing.JButton btn_tambah;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable tabledata;
+    private javax.swing.JTextField tekscari;
     // End of variables declaration//GEN-END:variables
+
+    public static void viewData(String where) {
+        
+        try {
+            DefaultTableModel m = (DefaultTableModel) tabledata.getModel();
+            m.getDataVector().removeAllElements();
+            Connection K = Config.configDB();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM akun "+where;
+            ResultSet R = S.executeQuery(Q);
+            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("id_akun");
+                String fullname = R.getString("fullname");
+                String username = R.getString("username");
+                String password = R.getString("password");
+                String level = R.getString("level");
+                Object[] data = {id,n,  fullname, username, password, level};
+                m.addRow(data);
+                n++;
+            }
+            
+            tabledata.getColumnModel().getColumn(0).setMinWidth(0);
+            tabledata.getColumnModel().getColumn(0).setMaxWidth(0);
+            
+        } catch (Exception e) {
+            //error handling
+        }
+    }
+//    private DefaultTableModel tabmode;
+    
+//    void viewData(String string){
+//        Object[]baris = {"Id Akun","Nama Lengkap", "Username","Password","Level"};
+//        tabmode = new DefaultTableModel(null, baris);
+//        tabledata.setModel(tabmode);
+//        String sql = " SELECT * FROM akun ";
+//        try {
+//            Connection K = Config.configDB();
+//            Statement S = K.createStatement();
+//            ResultSet R = S.executeQuery(sql);
+//            while (R.next()) {                 
+//                int id = R.getInt("id_akun");
+//                String fullname = R.getString("fullname");
+//                String username = R.getString("username");
+//                String password = R.getString("password");
+//                String level = R.getString("level");
+//                Object[] data = {id, fullname, username, password, level};
+//                tabmode.addRow(data); 
+//            }
+//            K.close();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null,"Menampilkan data GAGAL","Informasi", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        
+//    }
 }
+

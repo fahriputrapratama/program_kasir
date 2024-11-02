@@ -7,6 +7,11 @@ package tampilanloginn;
 import javax.swing.JOptionPane;
 import static tampilanloginn.menu.lb_level;
 import static tampilanloginn.menu.lb_nama;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 
 /**
  *
