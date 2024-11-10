@@ -3,8 +3,8 @@ package tampilanloginn;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static tampilanloginn.menu.lb_level;
-import static tampilanloginn.menu.lb_nama;
+import static tampilanloginn.menu.datauser;
+import static tampilanloginn.menu.dataproduk;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
