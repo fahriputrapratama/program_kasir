@@ -51,17 +51,27 @@ public class menu extends javax.swing.JFrame {
         pn_content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        pn_sidebar.setBackground(new java.awt.Color(255, 255, 255));
+        pn_sidebar.setBackground(new java.awt.Color(204, 255, 255));
         pn_sidebar.setPreferredSize(new java.awt.Dimension(225, 369));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
         home.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/png-transparent-menu-icon-icon-design-hamburger-button-house-css-sprites-user-interface-home-page-triangle-removebg-preview (1) (1) (1) (1) (1).png"))); // NOI18N
         home.setText("  Menu");
         home.setPreferredSize(new java.awt.Dimension(56, 21));
+        home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
         jLabel1.setText("    MAM SHOP");
@@ -223,6 +233,21 @@ public class menu extends javax.swing.JFrame {
         pn_content.repaint();
         pn_content.revalidate();
     }//GEN-LAST:event_dataprodukMouseClicked
+
+    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
+        // TODO add your handling code here:
+        pn_content.removeAll();
+        pn_content.add(new contentbg());
+        pn_content.repaint();
+        pn_content.revalidate();
+    }//GEN-LAST:event_homeMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        pn_content.add(new contentbg());
+        pn_content.repaint();
+        pn_content.revalidate();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
